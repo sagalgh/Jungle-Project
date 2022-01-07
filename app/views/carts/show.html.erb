@@ -16,7 +16,7 @@
       </thead>
       <tbody>
       <% if enhanced_cart[0] == nil %>
-      <p> Your cart is empty, please add items </p>
+      <p> Your cart is empty, <%= link_to 'please add items', :root %></p>
 
       <% else %>
         <% enhanced_cart.each do |item| %>
