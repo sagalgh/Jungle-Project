@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-
   def cart
     @cart ||= cookies[:cart].present? ? JSON.parse(cookies[:cart]) : {}
   end
@@ -28,13 +27,16 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+
   def current_user
     return unless session[:user_id]
     @current_user ||= User.find(session[:user_id])
   end
   helper_method :current_user
+
   def authenticate
     authenticate_with_http_basic do |user, password| user == ENV['name'] &&  password == ENV['password']
     end
   end
+
 end
