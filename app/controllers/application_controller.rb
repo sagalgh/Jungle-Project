@@ -28,6 +28,11 @@ class ApplicationController < ActionController::Base
     }
     cookies[:cart]
   end
+  def current_user
+    return unless session[:user_id]
+    @current_user ||= User.find(session[:user_id])
+  end
+  helper_method :current_user
   def authenticate
     authenticate_with_http_basic do |user, password| user == ENV['name'] &&  password == ENV['password']
     end
